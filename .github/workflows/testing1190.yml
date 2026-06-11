@@ -1,0 +1,31 @@
+name: Testing1190
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-cache-key:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+    steps:
+      - name: Checkout test repo
+        uses: actions/checkout@v6
+
+     
+      - name: Setup Node 
+        # uses: actions/setup-node@v6  
+        # uses: alexdunae/setup-node@main
+        uses: gowridurgad/setup-node@testing-1009
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install deps
+        run: npm install
