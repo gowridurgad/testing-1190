@@ -1,0 +1,21 @@
+{
+  "name": "testing1190",
+  "version": "1.0.0",
+  "description": "Your package description",
+  "main": "index.js",
+  "repository": "github:gowridurgad/testing-1190",
+  "author": "gowridurgad",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "jest": "^29.6.1"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}
