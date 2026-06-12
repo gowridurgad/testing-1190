@@ -25,3 +25,5 @@ jobs:
 
       - name: Install deps
         run: yarn install
+
+      - run: echo "Used cache key was ${{ steps.setup.outputs.cache-key }}"
