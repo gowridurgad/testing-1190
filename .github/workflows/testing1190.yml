@@ -11,19 +11,19 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu-latest','macos-latest','windows-latest', 'ubuntu-24.04-arm', 'windows-11-arm', 'macos-15-intel']
+        node: [ 20, 22, 24 ]
     steps:
       - name: Checkout test repo
         uses: actions/checkout@v6
      
       - name: Setup Node 
-        id: setup
         # uses: actions/setup-node@v6  
         # uses: alexdunae/setup-node@main
         uses: gowridurgad/setup-node@testing-1009
         with:
-          node-version: latest
+          node-version: ${{ matrix.node }}
           cache: npm
-          cache-dependency-path: package-lock.json
+
     
       - name: Install deps
         run: npm install
