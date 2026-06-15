@@ -22,7 +22,7 @@ jobs:
         # uses: alexdunae/setup-node@main
         uses: gowridurgad/setup-node@testing-1009
         with:
-          node-version: '24-nightly'
+          node-version: '24.0.0-nightly'
           cache: npm
 
     
