@@ -21,7 +21,7 @@ jobs:
         # uses: alexdunae/setup-node@main
         uses: gowridurgad/setup-node@testing-1009
         with:
-          node-version: '.nvmrc'
+          node-version-file: '.nvmrc'
           cache: npm
 
     
