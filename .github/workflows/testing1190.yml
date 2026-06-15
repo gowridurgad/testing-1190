@@ -21,11 +21,10 @@ jobs:
         # uses: alexdunae/setup-node@main
         uses: gowridurgad/setup-node@testing-1009
         with:
-          node-version: 24
-          cache: yarn
-          check-latest: true
+          node-version: 26.1.0
+          cache: npm
+    
       - name: Install deps
-        run: yarn install
+        run: npm install
         
-      - name: output
-        run: echo "Used cache key was ${{ steps.setup.outputs.cache-key }}"
+     
