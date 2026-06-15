@@ -21,7 +21,7 @@ jobs:
         # uses: alexdunae/setup-node@main
         uses: gowridurgad/setup-node@testing-1009
         with:
-          node-version-file: '.nvmrc'
+          node-version: '24.0.0-v8-canary'
           cache: npm
 
     
