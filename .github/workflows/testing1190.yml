@@ -12,6 +12,10 @@ jobs:
       - name: Checkout test repo
         uses: actions/checkout@v6
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
 
 
       - name: Setup Node
@@ -21,10 +25,10 @@ jobs:
         uses: gowridurgad/setup-node@testing-1009
         with:
           node-version: '24'
-          cache: yarn
+          cache: pnom
   
       - name: Install deps
-        run: yarn install
+        run: pnpm install
       
       - name: Show cache-key vs cache-matched-key   
         shell: bash
