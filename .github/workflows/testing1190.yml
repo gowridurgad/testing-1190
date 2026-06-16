@@ -5,21 +5,14 @@ on:
 
 jobs:
   test-cache-key:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os: ['ubuntu-latest']
+    runs-on: runs-on: self-hosted
        
         
     steps:
       - name: Checkout test repo
         uses: actions/checkout@v6
 
-      - name: Enable Corepack
-        shell: bash
-        run: corepack enable
+
 
       - name: Setup Node
         id: setup
@@ -28,11 +21,10 @@ jobs:
         uses: gowridurgad/setup-node@testing-1009
         with:
           node-version: '24'
-          cache: yarn
-
-    
+          cache: npm
+  
       - name: Install deps
-        run: yarn install
+        run: npm install
       
       - name: Show cache-key vs cache-matched-key   
         shell: bash
