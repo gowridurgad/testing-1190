@@ -5,7 +5,7 @@ on:
 
 jobs:
   test-cache-key:
-    runs-on: runs-on: self-hosted
+    runs-on: self-hosted
        
         
     steps:
