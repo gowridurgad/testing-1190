@@ -17,10 +17,9 @@ jobs:
       - name: Checkout test repo
         uses: actions/checkout@v6
 
-      - name: Enable Corepack and set Yarn version
-        run: |
-          corepack enable
-          yarn set version stable
+      - name: Enable Corepack
+        shell: bash
+        run: corepack enable
 
       - name: Setup Node
         id: setup
