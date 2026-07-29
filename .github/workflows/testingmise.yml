@@ -8,7 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Create mise.toml
+        shell: bash
+        run: |
+          cat > mise.toml <<'EOF'
+          [tools]
+          node = "24"
+          EOF
       - uses: gowridurgad/setup-node@mise-testing
         with:
-          node-version-file: mise.toml
+          node-version-file: 'mise.toml'
+      - name: Verify
+        shell: bash
+        run: |
+          node --version
+          
       - run: npm install
