@@ -13,7 +13,7 @@ jobs:
         run: |
           cat > mise.toml <<'EOF'
           [tools]
-          node = "24"
+          node = "26"
           EOF
       - uses: gowridurgad/setup-node@mise-testing
         with:
