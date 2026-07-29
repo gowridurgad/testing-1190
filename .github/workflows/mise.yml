@@ -2,8 +2,7 @@ name: Smoke test — mise.toml support
 
 on:
   workflow_dispatch:
-  push:
-    branches: [mise-testing]
+  
 
 jobs:
   # 1. Basic string form
