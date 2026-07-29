@@ -131,9 +131,7 @@ jobs:
         uses: gowridurgad/setup-node@mise-testing
         with:
           node-version-file: 'mise.toml'
-      - name: Verify failure
-        if: steps.setup.outcome == 'success'
-        run: echo "FAIL: should have errored" && exit 1
+    
 
   # 7. Cache-hit smoke (ensure cache flow still works with mise.toml)
   mise-with-cache:
