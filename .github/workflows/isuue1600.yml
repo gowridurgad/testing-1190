@@ -1,0 +1,40 @@
+name: Repro node-gyp failure on windows-latest
+
+on:
+  workflow_dispatch:
+
+jobs:
+  repro:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.1
+
+      - name: Show tool versions
+        shell: pwsh
+        run: |
+          node -v
+          npm -v
+          python --version
+
+      - name: Create minimal repro package
+        shell: pwsh
+        run: |
+          @'
+          {
+            "name": "node-gyp-repro",
+            "private": true,
+            "version": "1.0.0",
+            "dependencies": {
+              "os-service": "2.2.5"
+            }
+          }
+          '@ | Out-File -FilePath package.json -Encoding utf8
+
+      - name: Reproduce failure
+        run: npm install
