@@ -15,15 +15,11 @@ jobs:
         with:
           node-version: 22.23.1
 
-      - name: Show environment
+      - name: Force node-gyp to use VS 2022
         shell: pwsh
         run: |
-          node -v
-          npm -v
-          python --version
-          if (Test-Path "C:\Program Files\Microsoft Visual Studio") {
-            Get-ChildItem "C:\Program Files\Microsoft Visual Studio" -Depth 2 | Select-Object FullName
-          }
+          npm config set msvs_version 2022
+          echo "npm_config_msvs_version=2022" >> $env:GITHUB_ENV
 
 
       - name: Install dependencies
