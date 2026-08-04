@@ -17,12 +17,12 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 22.23.1
-
-
-      - name: Write project .npmrc
+      - name: Upgrade node-gyp
         shell: pwsh
-        run: |
-          "msvs_version=2022" | Out-File -FilePath .npmrc -Encoding ascii
+        run: npm install -g node-gyp@latest
+
+
+  
 
       - name: Install dependencies
         run:  npm install
