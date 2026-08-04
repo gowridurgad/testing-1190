@@ -5,9 +5,8 @@ on:
 
 jobs:
   repro:
-    runs-on: windows-latest
-    env:
-      GYP_MSVS_VERSION: "2022"
+    runs-on: windows-2022
+
 
 
     steps:
