@@ -1,4 +1,4 @@
-name: Reproduce node-gyp Visual Studio detection failure
+name: Reproduce/fix node-gyp on Windows
 
 on:
   workflow_dispatch:
@@ -6,6 +6,9 @@ on:
 jobs:
   repro:
     runs-on: windows-latest
+    env:
+      npm_config_msvs_version: "2022"
+      GYP_MSVS_VERSION: "2022"
 
     steps:
       - uses: actions/checkout@v6
@@ -15,12 +18,12 @@ jobs:
         with:
           node-version: 22.23.1
 
-      - name: Force node-gyp to use VS 2022
+
+      - name: Write project .npmrc
         shell: pwsh
         run: |
-          npm config set msvs_version 2022
-          echo "npm_config_msvs_version=2022" >> $env:GITHUB_ENV
-
+          "msvs_version=2022" | Out-File -FilePath .npmrc -Encoding ascii
 
       - name: Install dependencies
-        run: npm install
+        run:  npm install
+         
