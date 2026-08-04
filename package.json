@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "utf-8-validate": "^6.0.5"
+    "os-service": "1.4.1"
   },
   "engines": {
     "node": ">=12"
