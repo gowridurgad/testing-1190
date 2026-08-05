@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "node-windows": "1.0.0"
+   "node-windows": "^0.1.14"
   },
   "engines": {
     "node": ">=12"
