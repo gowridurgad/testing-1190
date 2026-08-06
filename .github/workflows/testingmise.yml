@@ -5,16 +5,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-15-intel
     steps:
-      - name: Create mise.toml
-        shell: bash
-        run: |
-          cat > mise.toml <<'EOF'
-          [tools]
-          node = "26"
-          EOF
-      - uses: actions/checkout@v6
+  
       
       - uses: gowridurgad/setup-node@mise-testing
         with:
