@@ -9,7 +9,7 @@ jobs:
     steps:      
       - uses:  gperdomor/setup-node@feature/mise-support  
         with:
-          node-version-file: 'mise.toml'
+          node-version-file: mise.toml
       - name: Verify
         shell: bash
         run: |
