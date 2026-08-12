@@ -11,7 +11,7 @@ jobs:
       - uses:  gperdomor/setup-node@feature/mise-support  
         with:
           node-version-file: package.json
-          node-version: 22
+         
       - name: Verify
         shell: bash
         run: |
