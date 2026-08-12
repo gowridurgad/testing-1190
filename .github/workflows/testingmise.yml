@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses:  gperdomor/setup-node@feature/mise-support  
         with:
-          node-version-file: package.json
+          node-version-file: mise.toml
          
       - name: Verify
         shell: bash
