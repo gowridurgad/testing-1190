@@ -3,6 +3,10 @@ name: test npmrc-lines
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -18,6 +22,9 @@ jobs:
             //npm.pkg.github.com/:_authToken=${GH_TOKEN}
             @gowri48:registry=https://registry.npmjs.org/
             //registry.npmjs.org/:_authToken=${NPMJS_TOKEN}
+        env:
+          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Show generated .npmrc
         run: |
@@ -25,11 +32,20 @@ jobs:
           echo "----- .npmrc contents -----"
           cat "$NPM_CONFIG_USERCONFIG"
 
-      - name: Verify lines were written
-        run: |
-          set -e
-          grep -q "@orgA:registry=https://npm.pkg.github.com/" "$NPM_CONFIG_USERCONFIG"
-          grep -q "@orgB:registry=https://registry.npmjs.org/" "$NPM_CONFIG_USERCONFIG"
-          grep -q "//npm.pkg.github.com/:_authToken" "$NPM_CONFIG_USERCONFIG"
-          grep -q "//registry.npmjs.org/:_authToken" "$NPM_CONFIG_USERCONFIG"
-          echo "✅ npmrc-lines written correctly"
+      - name: Install dependencies
+        run: npm install
+        env:
+          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+
+      - name: Publish @gowridurgad/pkg-x to GitHub Packages
+        run: npm publish --workspace=@gowridurgad/pkg-x
+        env:
+          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+
+      - name: Publish @gowri48/pkg-y to npmjs
+        run: npm publish --workspace=@gowri48/pkg-y
+        env:
+          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
