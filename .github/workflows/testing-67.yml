@@ -1,0 +1,35 @@
+name: test npmrc-lines
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup Node with npmrc-lines
+        uses: gowridurgad/setup-node@scope-67
+        with:
+          node-version: 24
+          npmrc-lines: |
+            @orgA:registry=https://npm.pkg.github.com/
+            //npm.pkg.github.com/:_authToken=${GH_TOKEN}
+            @orgB:registry=https://registry.npmjs.org/
+            //registry.npmjs.org/:_authToken=${NPMJS_TOKEN}
+
+      - name: Show generated .npmrc
+        run: |
+          echo "NPM_CONFIG_USERCONFIG=$NPM_CONFIG_USERCONFIG"
+          echo "----- .npmrc contents -----"
+          cat "$NPM_CONFIG_USERCONFIG"
+
+      - name: Verify lines were written
+        run: |
+          set -e
+          grep -q "@orgA:registry=https://npm.pkg.github.com/" "$NPM_CONFIG_USERCONFIG"
+          grep -q "@orgB:registry=https://registry.npmjs.org/" "$NPM_CONFIG_USERCONFIG"
+          grep -q "//npm.pkg.github.com/:_authToken" "$NPM_CONFIG_USERCONFIG"
+          grep -q "//registry.npmjs.org/:_authToken" "$NPM_CONFIG_USERCONFIG"
+          echo "✅ npmrc-lines written correctly"
