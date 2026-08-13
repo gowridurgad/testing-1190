@@ -12,9 +12,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-   "node-windows": "^0.1.14"
-  },
 
   "engines": {
     "node": "^22 || ^24"
