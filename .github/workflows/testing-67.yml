@@ -23,7 +23,7 @@ jobs:
             @gowri48:registry=https://registry.npmjs.org/
             //registry.npmjs.org/:_authToken=${NPMJS_TOKEN}
         env:
-          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN:    ${{ secrets.GH_TOKEN }}
           NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
       - name: Show generated .npmrc
@@ -35,17 +35,11 @@ jobs:
       - name: Install dependencies
         run: npm install
         env:
-          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN:    ${{ secrets.GH_TOKEN }}
           NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
-      - name: Publish @gowridurgad/pkg-x to GitHub Packages
-        run: npm publish --workspace=@gowridurgad/pkg-x
+      - run: npm publish --registry=https://npm.pkg.github.com/
+      - run: npm publish --registry=https://registry.npmjs.org/ --access public
         env:
-          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
-          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
-
-      - name: Publish @gowri48/pkg-y to npmjs
-        run: npm publish --workspace=@gowri48/pkg-y
-        env:
-          GH_TOKEN:    ${{ secrets.GITHUB_TOKEN }}
-          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
+           NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
