@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:      
       - uses: actions/checkout@v7
-      - uses:  gperdomor/setup-node@feature/mise-support  
+      - uses:  actions/setup-node@v7
          
          
       - name: Verify
