@@ -25,7 +25,7 @@ jobs:
             @gowri48=https://registry.npmjs.org/::${NPMJS_TOKEN}
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
-          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+          NPMJS_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Show generated files
         run: |
@@ -46,4 +46,4 @@ jobs:
         run: $NPM_PUBLISH_ALL --access public
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
-          NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+          NPMJS_TOKEN: ${{ secrets.NPM_TOKEN }}
