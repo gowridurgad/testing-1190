@@ -1,4 +1,4 @@
-name: test npmrc-lines
+name: test 67-2 publish-all
 
 on:
   workflow_dispatch:
@@ -13,33 +13,37 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Setup Node with npmrc-lines
-        uses: gowridurgad/setup-node@scope-67
+      - name: Show original package.json name
+        run: node -p "require('./package.json').name"
+
+      - name: Setup Node (multi-registry)
+        uses: gowridurgad/setup-node@67-2
         with:
-          node-version: 24
-          npmrc-lines: |
-            @gowridurgad:registry=https://npm.pkg.github.com/
-            //npm.pkg.github.com/:_authToken=${GH_TOKEN}
-            @gowri48:registry=https://registry.npmjs.org/
-            //registry.npmjs.org/:_authToken=${NPMJS_TOKEN}
+          node-version: '24'
+          npm-registries: |
+            @gowridurgad=https://npm.pkg.github.com/::${GH_TOKEN}
+            @gowri48=https://registry.npmjs.org/::${NPMJS_TOKEN}
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
           NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
 
-      - name: Show generated .npmrc
+      - name: Show generated files
         run: |
-          echo "NPM_CONFIG_USERCONFIG=$NPM_CONFIG_USERCONFIG"
-          echo "----- .npmrc contents -----"
+          echo "----- .npmrc -----"
           cat "$NPM_CONFIG_USERCONFIG"
+          echo ""
+          echo "----- \$NPM_PUBLISH_ALL script -----"
+          echo "path: $NPM_PUBLISH_ALL"
+          cat "$NPM_PUBLISH_ALL"
+          echo ""
+          echo "----- package.json name after setup -----"
+          node -p "require('./package.json').name"
 
-      - name: Install dependencies
+      - name: Install
         run: npm install
+
+      - name: Publish to ALL registries in one step
+        run: $NPM_PUBLISH_ALL --access public
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
           NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
-
-      - run: npm publish --registry=https://npm.pkg.github.com/
-      - run: npm publish --registry=https://registry.npmjs.org/ --access public
-        env:
-           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
-           NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
