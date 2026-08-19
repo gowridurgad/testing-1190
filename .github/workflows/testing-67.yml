@@ -22,7 +22,7 @@ jobs:
           node-version: '24'
           npm-registries: |
            
-            @gowri48=https://registry.npmjs.org/::${NPMJS_TOKEN}
+           @gowridurgad=https://npm.pkg.github.com/::${GH_TOKEN}
            
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
