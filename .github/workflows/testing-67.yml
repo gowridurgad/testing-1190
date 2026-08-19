@@ -22,11 +22,11 @@ jobs:
           node-version: '24'
           npm-registries: |
            
-            @gowri48=https://registry.npmjs.org/::${NPMJS_TOKEN}
+            @priya-kinthali=https://npm.pkg.github.com/::${TOKEN_GITHUB}
             @gowridurgad=https://npm.pkg.github.com/::${GH_TOKEN}
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
-          NPMJS_TOKEN: ${{ secrets.NPM_TOKEN }}
+          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Show generated files
         run: |
@@ -47,4 +47,4 @@ jobs:
         run: $NPM_PUBLISH_ALL --access public
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
-          NPMJS_TOKEN: ${{ secrets.NPM_TOKEN }}
+          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
