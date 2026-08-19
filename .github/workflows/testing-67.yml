@@ -22,11 +22,11 @@ jobs:
           node-version: '24'
           npm-registries: |
            
-            @gowridurgad=https://npm.pkg.github.com/::${TOKEN_GITHUB}
+            @gowri48=https://registry.npmjs.org/::${NPMJS_TOKEN}
             @gowridurgad=https://npm.pkg.github.com/::${GH_TOKEN}
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
-          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
+          NPMJS_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Show generated files
         run: |
@@ -39,7 +39,6 @@ jobs:
           echo ""
           echo "----- package.json name after setup -----"
           node -p "require('./package.json').name"
-
       - name: Install
         run: npm install
 
@@ -47,4 +46,4 @@ jobs:
         run: $NPM_PUBLISH_ALL --access public
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
-          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
+          NPMJS_TOKEN: ${{ secrets.NPM_TOKEN }}
