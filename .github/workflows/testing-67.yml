@@ -22,7 +22,7 @@ jobs:
           node-version: '24'
           npm-registries: |
            
-            @priya-kinthali=https://npm.pkg.github.com/::${TOKEN_GITHUB}
+            @gowridurgad=https://npm.pkg.github.com/::${TOKEN_GITHUB}
             @gowridurgad=https://npm.pkg.github.com/::${GH_TOKEN}
         env:
           GH_TOKEN:    ${{ secrets.GH_TOKEN }}
