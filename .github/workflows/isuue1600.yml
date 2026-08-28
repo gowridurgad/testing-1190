@@ -1,22 +1,19 @@
-name: Reproduce/fix node-gyp on Windows
+name: reproduce-1600
 
 on:
+  push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
-  repro:
-    runs-on: windows-2022
-
-
-
+  install:
+    runs-on: windows-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Setup Node
-        uses: actions/setup-node@v7
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
-          
-      - name: Install dependencies
-        run:  npm install
+      - run: npm install
          
