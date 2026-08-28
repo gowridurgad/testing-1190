@@ -13,8 +13,8 @@
     "access": "public"
   },
 
-  "engines": {
-    "node": 22
+  "dependencies": {
+    "os-service": "github:Trivector-System-AB/os-service"
   },
  
   "packageManager": "yarn@4.17.0"
