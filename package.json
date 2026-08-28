@@ -14,16 +14,8 @@
   },
 
   "engines": {
-    "node": "^22 || ^24"
+    "node": "^24"
   },
-  "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": "^24.3"
-    }
-  },
-  "volta": {
-    "node": "24.11.1"
-  },
+ 
   "packageManager": "yarn@4.17.0"
 }
